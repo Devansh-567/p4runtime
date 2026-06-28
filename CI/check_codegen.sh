@@ -26,20 +26,30 @@ rm -rf go/*
 rm -rf py/p4
 ./codegen/update.sh
 
-diff="$(git status --porcelain go go.mod go.sum)"
+go_diff="$(git status --porcelain go go.mod go.sum)"
 
-if [ ! -z "$diff" ]; then
-    echo "The generated Go files are not up-to-date"
-    echo "You can regenerate them with './codegen/update.sh' and commit the changes"
+# Use explicit string comparison instead of [ ! -z ] to avoid
+# triggering SC2236 and to be unambiguous in all POSIX shells.
+if [ -n "$go_diff" ]; then
+    echo "ERROR: The generated Go files are not up-to-date."
+    echo "Run './codegen/update.sh' locally and commit the result."
+    echo ""
+    echo "Diff:"
+    echo "$go_diff"
     exit 1
 fi
 
-diff="$(git status --porcelain py)"
+py_diff="$(git status --porcelain py)"
 
-if [ ! -z "$diff" ]; then
-    echo "The generated Python files are not up-to-date"
-    echo "You can regenerate them with './codegen/update.sh' and commit the changes"
+if [ -n "$py_diff" ]; then
+    echo "ERROR: The generated Python files are not up-to-date."
+    echo "Run './codegen/update.sh' locally and commit the result."
+    echo ""
+    echo "Diff:"
+    echo "$py_diff"
     exit 1
 fi
+
+echo "Codegen check passed: all generated files are up-to-date."
 
 popd >/dev/null
