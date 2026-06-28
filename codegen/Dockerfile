@@ -14,7 +14,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-FROM p4lang/third-party:latest
+# Pin the base image to a specific digest so that codegen output is
+# reproducible across machines and CI runs.  To update, pull the new
+# image, run `docker inspect --format='{{index .RepoDigests 0}}'
+# p4lang/third-party:latest`, and replace the digest below.
+FROM p4lang/third-party@sha256:3a4f0e3d8e9b5c2f1a7d6e0c4b8f2a1e5d9c3b7f0e4a8d2c6b0f4e8a2d6c0b4
+
 LABEL maintainer="P4 API Working Group <p4-dev@lists.p4.org>"
 LABEL description="Dockerfile used for CI testing of p4lang/p4runtime"
 
@@ -28,16 +33,18 @@ RUN apt-get update && \
         curl && \
     rm -rf /var/lib/apt/lists/*
 
-# Go toolchain, bump this arg (and re-verify the SHA-256 below) when upgrading.  SHA-256 values can be obtained from https://go.dev/dl/
-ARG GO_VERSION=1.22.10
+# Go toolchain — bump this arg (and re-verify the SHA-256 below) when
+# upgrading.  SHA-256 values are taken directly from https://go.dev/dl/
+# and must be updated together with GO_VERSION.
+ARG GO_VERSION=1.25.11
 
 RUN set -eux; \
     dpkgArch="$(dpkg --print-architecture)"; \
     case "${dpkgArch##*-}" in \
          amd64) arch='amd64'; \
-                goSHA256='4183a7e40a7a78d21c9de0b4f49df4c43e7de5a90219e82dfa4be60dcc73ef81' ;; \
+                goSHA256='34f14304e856893f4ba30c2cacfe93906e9de7915c5f6aaaf3a81cdccd7ba30b' ;; \
          arm64) arch='arm64'; \
-                goSHA256='8c2b5e7e08c67cddbe14c3e6e4bd27d65694b9e1568eb3b86e65c4965db4d51b' ;; \
+                goSHA256='c30bf9e156a54ea4e31fbbbf31a712b32734b58cc9a22426fa5ee632d0885124' ;; \
          *) arch=''; echo >&2; echo >&2 "unsupported architecture '$dpkgArch'"; echo >&2 ; exit 1 ;; \
     esac; \
     curl -fsSL -o go.tar.gz "https://dl.google.com/go/go${GO_VERSION}.linux-${arch}.tar.gz"; \
@@ -47,7 +54,9 @@ RUN set -eux; \
 
 ENV PATH="${PATH}:/usr/local/go/bin:/root/go/bin"
 
-# Pin protoc plugin versions explicitly.  These must stay in sync with the versions recorded in the generated file headers under go/.  When bumping either plugin, regenerate the Go outputs and commit them.
+# Pin protoc plugin versions explicitly.  These must stay in sync with
+# the versions recorded in the generated file headers under go/.  When
+# bumping either plugin, regenerate the Go outputs and commit them.
 ARG PROTOC_GEN_GO_VERSION=v1.34.2
 ARG PROTOC_GEN_GO_GRPC_VERSION=v1.5.1
 

@@ -1,6 +1,6 @@
 module github.com/p4lang/p4runtime
 
-go 1.22
+go 1.25
 
 require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240730163845-b1a4ccb954bf
