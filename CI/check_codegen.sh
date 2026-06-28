@@ -28,8 +28,7 @@ rm -rf py/p4
 
 go_diff="$(git status --porcelain go go.mod go.sum)"
 
-# Use explicit string comparison instead of [ ! -z ] to avoid
-# triggering SC2236 and to be unambiguous in all POSIX shells.
+# Ensure generated Go files are up-to-date
 if [ -n "$go_diff" ]; then
     echo "ERROR: The generated Go files are not up-to-date."
     echo "Run './codegen/update.sh' locally and commit the result."

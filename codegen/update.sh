@@ -42,8 +42,7 @@ docker run --rm \
        -v "$tmpdir:/tmp/gen" \
        p4runtime-ci bash -c "rm -r /tmp/gen/*"
 
-# Keep go mod tidy pinned to the same Go version declared in go.mod so
-# that the toolchain directive stays stable across developer machines.
+# Match the Go version declared in go.mod
 docker run --rm -u "$(id -u):$(id -g)" \
        -e "GOCACHE=/tmp/gocache" \
        -e "GOPATH=/tmp/gopath" \

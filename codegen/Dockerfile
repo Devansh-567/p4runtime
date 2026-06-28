@@ -14,10 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Pin the base image to a specific digest so that codegen output is
-# reproducible across machines and CI runs.  To update, pull the new
-# image, run `docker inspect --format='{{index .RepoDigests 0}}'
-# p4lang/third-party:latest`, and replace the digest below.
 FROM p4lang/third-party:latest
 LABEL maintainer="P4 API Working Group <p4-dev@lists.p4.org>"
 LABEL description="Dockerfile used for CI testing of p4lang/p4runtime"
@@ -32,8 +28,7 @@ RUN apt-get update && \
         curl && \
     rm -rf /var/lib/apt/lists/*
 
-# Go toolchain — bump this arg (and re-verify the SHA-256 below) when
-# upgrading.  SHA-256 values can be obtained from https://go.dev/dl/
+# Go toolchain, bump this arg (and re-verify the SHA-256 below) when upgrading.  SHA-256 values can be obtained from https://go.dev/dl/
 ARG GO_VERSION=1.22.10
 
 RUN set -eux; \
@@ -52,9 +47,7 @@ RUN set -eux; \
 
 ENV PATH="${PATH}:/usr/local/go/bin:/root/go/bin"
 
-# Pin protoc plugin versions explicitly.  These must stay in sync with
-# the versions recorded in the generated file headers under go/.  When
-# bumping either plugin, regenerate the Go outputs and commit them.
+# Pin protoc plugin versions explicitly.  These must stay in sync with the versions recorded in the generated file headers under go/.  When bumping either plugin, regenerate the Go outputs and commit them.
 ARG PROTOC_GEN_GO_VERSION=v1.34.2
 ARG PROTOC_GEN_GO_GRPC_VERSION=v1.5.1
 
