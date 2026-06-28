@@ -18,7 +18,7 @@
 # reproducible across machines and CI runs.  To update, pull the new
 # image, run `docker inspect --format='{{index .RepoDigests 0}}'
 # p4lang/third-party:latest`, and replace the digest below.
-FROM p4lang/third-party@sha256:3a4f0e3d8e9b5c2f1a7d6e0c4b8f2a1e5d9c3b7f0e4a8d2c6b0f4e8a2d6c0b4
+FROM p4lang/third-party@sha256:e9ea666a19d5ab51520ffe40e4c06ee5b8407f80e4ec1a4ae9501f21687255c1
 
 LABEL maintainer="P4 API Working Group <p4-dev@lists.p4.org>"
 LABEL description="Dockerfile used for CI testing of p4lang/p4runtime"
