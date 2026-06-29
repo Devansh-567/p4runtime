@@ -26,7 +26,7 @@ rm -rf go/*
 rm -rf py/p4
 ./codegen/update.sh
 
-go_diff="$(git status --porcelain go go.mod go.sum)"
+go_diff="$(git diff --name-only go/ go.mod go.sum)"
 
 # Ensure generated Go files are up-to-date
 if [ -n "$go_diff" ]; then
@@ -38,7 +38,7 @@ if [ -n "$go_diff" ]; then
     exit 1
 fi
 
-py_diff="$(git status --porcelain py)"
+py_diff="$(git diff --name-only py/)"
 
 if [ -n "$py_diff" ]; then
     echo "ERROR: The generated Python files are not up-to-date."
