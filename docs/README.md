@@ -39,7 +39,7 @@ Use `-` for the hyphen, `--` for en dash and `&#8212;` for em dash.
 
 Each image in the specification has a corresponding `.odg` file in
 `resources/figs/`. These are LibreOffice drawing files. The files are rendered into
-`.svg` and `.png` images (for HTML and PDF output, resepectively) at build time,
+`.svg` and `.png` images (for HTML and PDF output, respectively) at build time,
 using the `soffice` command-line tool. The page size for each image should be
 adjusted manually by the author ("artist") to just fit the image on the
 apparent "page," to minimize padding around the image in the rendered
@@ -50,9 +50,9 @@ change the object's aspect ratio.)
 
 ## CI upload of built documents
 
-Github Actions take care of uploading the built HTML version of the spec to
-Github. The latest working draft (main branch) can be found
-[here](https://p4.org/p4runtime/spec/main/P4Runtime-Spec.html).
+GitHub Actions take care of uploading the built HTML version of the spec to
+GitHub Pages. The latest working draft (main branch) can be found
+[here](https://p4lang.github.io/p4runtime/spec/main/P4Runtime-Spec.html).
 
 Additionally, you can access the HTML & PDF versions of the spec for any given
 branch of this repository by using the following URLs:

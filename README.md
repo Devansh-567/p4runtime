@@ -38,7 +38,7 @@ P4Runtime follows [semantic versioning](https://semver.org/).
 We use git tags of them form `v1.4.1` to mark all releases.  
 Starting from `v1.5.0`, we also use release branches of the form `v1.5.x` to track minor releases.
 
-## Github Pages
+## GitHub Pages
 
 We maintain a `gh-pages` [branch](https://github.com/p4lang/p4runtime/tree/gh-pages) to host all releases of the specification, available at https://p4lang.github.io/p4runtime/.
 
@@ -205,9 +205,9 @@ definitions, only advice written by those with experience in using
 protobuf for applications while they have been extended over
 time.  They are here for learning and reference:
 
-* [Updating Proto Definitions Without Updating Code](https://developers.google.com/protocol-buffers/docs/overview#updating-defs)
-* [Updating A Message Type](https://developers.google.com/protocol-buffers/docs/proto3#updating)
-* [Backwards-compatibility issues in `oneof` fields](https://developers.google.com/protocol-buffers/docs/proto3#backwards-compatibility_issues)
+* [Updating Proto Definitions Without Updating Code](https://protobuf.dev/overview/#updating-defs)
+* [Updating A Message Type](https://protobuf.dev/programming-guides/proto3/#updating)
+* [Backwards-compatibility issues in `oneof` fields](https://protobuf.dev/programming-guides/proto3/#backward)
 * [API design guide](https://cloud.google.com/apis/design)
 
 Some brief points, but not the full story:

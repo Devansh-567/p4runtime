@@ -85,7 +85,7 @@ Simply run
 cargo doc --open
 ```
 to build documentation for the crates and bring it up in your default web
-browser. Then, navgiate to the desired object and click "Source".
+browser. Then, navigate to the desired object and click "Source".
 
 ### Using cargo outdir
 

@@ -143,7 +143,7 @@ rules:
 
  * if `<X>` is `n`, where `n` is a positive integer, then the `bitwidth`
    field should be assigned the value `n`
- * if `<X>` is `bit<W>`, where `W` is a postive integer, then the
+ * if `<X>` is `bit<W>`, where `W` is a positive integer, then the
    `bitwidth` field should be assigned value `W`
  * if `<X>` is `string`, then the `bitwidth` field should be unset
    (which in Protobuf version 3 is the same as setting it explicitly to

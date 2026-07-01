@@ -14,7 +14,7 @@ specification document.
 The markup version uses [AsciiDoc](https://docs.asciidoctor.org/) to produce
 HTML and PDF versions of the documentation. Pre-built versions of the
 documentation are available on the [P4.org specifications
-page](https://p4.org/specs).
+page](https://p4.org/specifications/).
 
 
 Files:
@@ -42,10 +42,10 @@ You need to install [LibreOffice](https://nl.libreoffice.org/) on your local mac
 
 Each image in the specification has a corresponding `.odg` file under
 `resources/figs/`. These are LibreOffice drawing files. The files are rendered into
-`.svg` and `.png` images (for HTML and PDF output, resepectively) at build time,
+`.svg` and `.png` images (for HTML and PDF output, respectively) at build time,
 using the `soffice` command-line tool. The page size for each image should be
 adjusted manually by the author ("artist") to just fit the image on the
-apparrent "page," to minimize padding around the image in the rendered
+apparent "page," to minimize padding around the image in the rendered
 document. Use the menu item `Format | Page/Size Properties.` See the example
 screen shot below. (Do not check the "Fit object to paper format" box - it will
 change the object's aspect ratio.)
@@ -72,7 +72,7 @@ LibreOffice to be installed.
 ## Building
 
 The easiest way to render the AsciiDoc specification documentation is to use the
-`p4lang/p4rt-asciidoc:latest` Docker` image:
+`p4lang/p4rt-asciidoc:latest` Docker image:
 
     docker run -v `pwd`/docs/v1:/usr/src/p4-spec p4lang/p4rt-asciidoc:latest make build_spec_with_images
 
