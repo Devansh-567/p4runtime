@@ -273,7 +273,7 @@ def main():
             sys.exit(1)
         _, ext = os.path.splitext(f)
         if ext != ".adoc":
-            print("'{}' does not have an .mdk extension")
+            print("'{}' does not have an .adoc extension".format(f))
             sys.exit(1)
 
     conf_path = None
