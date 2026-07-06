@@ -25,24 +25,17 @@ if [ "$#" -ne 1 ]; then
 fi
 
 BUILD_DIR="$1"
-PROTOC="$(which protoc)"
-if [ "$?" -ne 0 ]; then
-    echo "Could not find protoc"
-    exit 2
-fi
+
+command -v protoc >/dev/null 2>&1 || { echo "Could not find protoc"; exit 2; }
+PROTOC="$(command -v protoc)"
 
 echo "Using $PROTOC"
 
-GRPC_CPP_PLUGIN="$(which grpc_cpp_plugin)"
-if [ "$?" -ne 0 ]; then
-    echo "Could not find CPP protoc plugin"
-    exit 2
-fi
-GRPC_PY_PLUGIN="$(which grpc_python_plugin)"
-if [ "$?" -ne 0 ]; then
-    echo "Could not find Python protoc plugin"
-    exit 2
-fi
+command -v grpc_cpp_plugin >/dev/null 2>&1 || { echo "Could not find CPP protoc plugin"; exit 2; }
+GRPC_CPP_PLUGIN="$(command -v grpc_cpp_plugin)"
+
+command -v grpc_python_plugin >/dev/null 2>&1 || { echo "Could not find Python protoc plugin"; exit 2; }
+GRPC_PY_PLUGIN="$(command -v grpc_python_plugin)"
 
 set -e
 
