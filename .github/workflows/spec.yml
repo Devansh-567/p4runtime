@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Validate that all files have copyright and license info
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v5
       - name: Install dev dependencies
         run: |
           ./CI/install-uv.sh
@@ -30,7 +30,7 @@ jobs:
   asciidoc-lint:
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - name: Run linter
       run: |
         ./tools/asciidoclint.py docs/v1/P4Runtime-Spec.adoc
@@ -38,7 +38,7 @@ jobs:
   build-spec:
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - name: Build spec
       run: |
         make -C docs/tools/
