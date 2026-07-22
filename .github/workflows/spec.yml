@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Validate that all files have copyright and license info
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install dev dependencies
         run: |
           ./CI/install-uv.sh
