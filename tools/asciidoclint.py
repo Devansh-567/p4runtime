@@ -128,7 +128,7 @@ class ContextSkipBlocks(Context):
     Block = namedtuple('Block', ['num_tildes', 'name'])
 
     def __init__(self):
-        self.p_block = re.compile('^ *(?P<tildes>~+) *(?:(?P<cmd>Begin|End)(?: +))?(?P<name>\w+)?')
+        self.p_block = re.compile(r'^ *(?P<tildes>~+) *(?:(?P<cmd>Begin|End)(?: +))?(?P<name>\w+)?')
         self.blocks_stack = []
 
     def enter(self, line, filename, lineno):
@@ -169,11 +169,12 @@ class ContextSkipBlocks(Context):
 
 # TODO: would "skip metadata" be more generic?
 class ContextAfterTitle(Context):
-    """A context used to visit only Asciidoc code after the document title (e.g. "= P4Runtime Specification")."""
+    """A context used to visit only Asciidoc code after the AsciiDoc document title (^= ...).
+    """
 
     def __init__(self, *args):
         self.title_found = False
-        self.p_title = re.compile(r'^= ')
+        self.p_title = re.compile(r'^ *=+ ')
 
     def enter(self, line, filename, lineno):
         if self.title_found:
@@ -183,10 +184,10 @@ class ContextAfterTitle(Context):
 
 
 class ContextSkipHeadings(Context):
-    """A context used to skip headings (lines starting with =)."""
+    """A context used to skip AsciiDoc headings (lines starting with =)."""
 
     def __init__(self, *args):
-        self.p_headings = re.compile(r'^=+ ')
+        self.p_headings = re.compile(r'^ *=+')
 
     def enter(self, line, filename, lineno):
         return self.p_headings.match(line) is None
