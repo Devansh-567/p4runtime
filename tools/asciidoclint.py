@@ -169,12 +169,11 @@ class ContextSkipBlocks(Context):
 
 # TODO: would "skip metadata" be more generic?
 class ContextAfterTitle(Context):
-    """A context used to visit only Asciidoc code after the [TITLE] block element.
-    """
+    """A context used to visit only Asciidoc code after the document title (e.g. "= P4Runtime Specification")."""
 
     def __init__(self, *args):
         self.title_found = False
-        self.p_title = re.compile('^ *\[TITLE\] *$')
+        self.p_title = re.compile(r'^= ')
 
     def enter(self, line, filename, lineno):
         if self.title_found:
@@ -184,10 +183,10 @@ class ContextAfterTitle(Context):
 
 
 class ContextSkipHeadings(Context):
-    """A context used to skip headings (lines starting with #)."""
+    """A context used to skip headings (lines starting with =)."""
 
     def __init__(self, *args):
-        self.p_headings = re.compile('^ *#')
+        self.p_headings = re.compile(r'^=+ ')
 
     def enter(self, line, filename, lineno):
         return self.p_headings.match(line) is None
